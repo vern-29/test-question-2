@@ -209,34 +209,7 @@
                 <option>OUI</option>
                 <option>NON</option>
             </select>
-            <button type="button" onclick="genererPDF()">Envoyer et Générer PDF</button>
-        </form>
-    
-        <script>
-            function genererPDF() {
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-    
-                // Récupération des réponses du formulaire
-                const formData = new FormData(document.getElementById("questionnaire"));
-                let data = [];
-                formData.forEach((value, key) => {
-                    data.push([key, value]);
-                });
-    
-                // Ajout du titre
-                doc.text("Réponses au Questionnaire CISED", 10, 10);
-    
-                // Ajout du tableau des réponses
-                doc.autoTable({
-                    head: [["Question", "Réponse"]],
-                    body: data,
-                    startY: 20
-                });
-    
-                // Sauvegarde du PDF
-                doc.save("Reponses_Questionnaire.pdf");
-            }
+        <button type="submit">
         </script>
     
     </body>
