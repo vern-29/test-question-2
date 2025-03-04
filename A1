@@ -62,7 +62,7 @@
 
     <h2>Questionnaire CISED</h2>
     
-    <form id="questionnaire">
+    <form id="questionnaire" netlify>
 
             <!-- Informations générales -->
             <h3>I – Informations générales</h3>
