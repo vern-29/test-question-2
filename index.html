@@ -229,12 +229,21 @@
         }
         
        function envoyerMail() {
-            if (!csvFileUrl) {
-                alert("Veuillez d'abord enregistrer les réponses avant d'envoyer le mail.");
-                return;
-            }
-            
-            <a href="mailto:coqueletmaxence@gmail.com" class="button">Nous écrire !</a>
+       <!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envoyer un email</title>
+</head>
+<body>
+    <a href="mailto:coqueletmaxence@gmail.com?subject=Sujet%20de%20l%27réponsesquestionnaire&body=Bonjour,%0A%0AJe%20souhaite%20vous%20contacter.%0A%0ACordialement." 
+       target="_blank">
+        <button>Envoyer un email</button>
+    </a>
+</body>
+</html>
+ 
         }
     </script>
 </body>
