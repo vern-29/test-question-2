@@ -204,9 +204,23 @@
                 <option>OUI</option>
                 <option>NON</option>
             </select>
-        <button type="submit">Envoyer</button>
-        </script>
+<button type="button" onclick="envoyerMail()">Enregistrer et soumettre par mail</button>
+    </form>
     
-    </body>
-    </html>
-    
+    <script>
+        function envoyerMail() {
+            let form = document.getElementById('questionnaire');
+            let formData = new FormData(form);
+            let csvContent = "Nom,Email,Âge\n";
+            csvContent += `"${formData.get('nom')}","${formData.get('email')}","${formData.get('age')}"\n`;
+            
+            let encodedCSV = encodeURIComponent(csvContent);
+            let email = "votre@email.com";
+            let subject = "Réponses au questionnaire";
+            let body = `Bonjour,\n\nCi-joint le fichier CSV contenant les réponses au questionnaire.\n\n${csvContent}`;
+            
+            window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+    </script>
+</body>
+</html>
