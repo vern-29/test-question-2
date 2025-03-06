@@ -204,11 +204,14 @@
                 <option>OUI</option>
                 <option>NON</option>
             </select>
-      <button type="button" onclick="genererCSV()">Enregistrer et soumettre par mail</button>
+            <button type="button" onclick="genererCSV()">Enregistrer les réponses</button>
         <a id="downloadLink" style="display:none">Télécharger les réponses</a>
+        <button type="button" onclick="envoyerMail()">Envoyer par mail</button>
     </form>
     
     <script>
+        let csvFileUrl = "";
+
         function genererCSV() {
             let form = document.getElementById('questionnaire');
             let formData = new FormData(form);
@@ -216,17 +219,21 @@
             csvContent += `"${formData.get('nom')}","${formData.get('email')}","${formData.get('age')}"\n`;
             
             let blob = new Blob([csvContent], { type: 'text/csv' });
-            let url = URL.createObjectURL(blob);
+            csvFileUrl = URL.createObjectURL(blob);
+            
             let downloadLink = document.getElementById('downloadLink');
-            downloadLink.href = url;
+            downloadLink.href = csvFileUrl;
             downloadLink.download = 'questionnaire_reponses.csv';
             downloadLink.style.display = 'block';
             downloadLink.innerText = "Télécharger les réponses";
-            
-            envoyerMail();
         }
         
         function envoyerMail() {
+            if (!csvFileUrl) {
+                alert("Veuillez d'abord enregistrer les réponses avant d'envoyer le mail.");
+                return;
+            }
+            
             let email = "votre@email.com";
             let subject = "Réponses au questionnaire";
             let body = "Bonjour,\n\nVeuillez trouver ci-joint le fichier CSV contenant mes réponses au questionnaire.\n\nMerci.\n";
